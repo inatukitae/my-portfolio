@@ -1,3 +1,6 @@
+Figma : https://www.figma.com/design/HcUpK2BEiXZGNvCGS4jU59/%E7%84%A1%E9%A1%8C?node-id=0-1&t=jVMx0CfJrTc2brYp-1
+
+
 ## 1. サービス概要（※最後に書いてOK）
 
 日々のイライラや感情的なモヤモヤから「感情」と「課題」を切り分け、自分自身が抱える本当の課題を可視化・整理するサービスです。感情に引っ張られずに現状を客観視するきっかけを提供します。
