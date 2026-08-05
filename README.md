@@ -1,5 +1,6 @@
 Figma : https://www.figma.com/design/HcUpK2BEiXZGNvCGS4jU59/%E7%84%A1%E9%A1%8C?node-id=0-1&t=jVMx0CfJrTc2brYp-1
 
+ER図　: https://dbdiagram.io/d/6a732b45829f06bdc88ca686
 
 ## 1. サービス概要（※最後に書いてOK）
 
