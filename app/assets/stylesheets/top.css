@@ -1,0 +1,122 @@
+/* ==========================================
+   ヒーローセクション
+   ========================================== */
+.hero-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 35px;
+  line-height: 1.8;
+}
+
+.btn-primary-custom {
+  background-color: #34495e;
+  color: #ffffff;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+  background-color: #2c3e50;
+  color: #ffffff;
+}
+
+/* ==========================================
+   メインコンテンツレイアウト
+   ========================================== */
+.section-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 40px;
+}
+
+/* ==========================================
+   お悩み・概念ボックス
+   ========================================== */
+.concept-box {
+  background-color: #f7fafc;
+  border-left: 4px solid #34495e;
+  padding: 25px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+}
+
+.concept-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2d3748;
+}
+
+.concept-text {
+  font-size: 0.95rem;
+  color: #4a5568;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   特徴グリッド
+   ========================================== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.feature-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.feature-icon {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.feature-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.feature-card-text {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.6;
+}
