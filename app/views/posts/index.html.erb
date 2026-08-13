@@ -1,0 +1,24 @@
+<h1>投稿一覧</h1>
+
+<%= link_to "新規投稿作成", new_post_path %>
+
+<hr>
+
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+      <p><strong>出来事：</strong> <%= post.event %></p>
+      <p><strong>課題：</strong> <%= post.issue %></p>
+      <%# 感情部分はデフォルト非表示の設計にするため一旦コメントアウトまたは格納構造にします %>
+      <small>投稿日時: <%= l post.created_at, format: :short %></small> |
+      <%= link_to "詳細", post_path(post) %> |
+      <%= link_to "削除", post_path(post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+    </div>
+  <% end %>
+<% else %>
+  <p>まだ投稿がありません。</p>
+<% end %>
+
+<div class="back-link">
+  <%= link_to "トップに戻る", root_path %> |
+</div>
