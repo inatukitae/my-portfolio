@@ -9,8 +9,9 @@
       日々のモヤモヤや理不尽な言い方への苛立ちから、「感情」と「課題」を切り分け。<br>
       冷静に客観視し、自分の学びと解決へ繋げましょう！
     </p>
-    <div>
-      <%= link_to "思考整理をはじめる", "#", class: "btn-primary-custom" %>
+    <div class="hero-actions">
+      <%= link_to "思考整理をはじめる", new_post_path, class: "btn-custom btn-primary-custom" %>
+      <%= link_to "過去の投稿を見る", posts_path, class: "btn-custom btn-secondary-custom" %>
     </div>
   </div>
 </div>
@@ -28,34 +29,36 @@
   </div>
 
   <!-- 特徴・機能紹介 -->
-  <h2 class="section-title">アプリの3つの特徴</h2>
-  
-  <div class="feature-grid">
-    <!-- 特徴 1 -->
-    <div class="feature-card">
-      <div class="feature-icon">🫗</div>
-      <h3 class="feature-card-title">出来事・感情・課題の分離</h3>
-      <p class="feature-card-text">
-        中央に「客観的事実」、左右に「感情の吐き出し」と「向き合うべき課題」を配置。思考の混ざり合いを防ぎ、自然と構造化して記録できます。
-      </p>
-    </div>
+  <div class="features-section">
+    <h2 class="section-title">アプリの3つの特徴</h2>
+    
+    <div class="feature-grid">
+      <!-- 特徴 1 -->
+      <div class="feature-card">
+        <div class="feature-icon">🫗</div>
+        <h3 class="feature-card-title">出来事・感情・課題の分離</h3>
+        <p class="feature-card-text">
+          中央に「客観的事実」、左右に「感情の吐き出し」と「向き合うべき課題」を配置。思考の混ざり合いを防ぎ、自然と構造化して記録できます。
+        </p>
+      </div>
 
-    <!-- 特徴 2 -->
-    <div class="feature-card">
-      <div class="feature-icon">🛡️</div>
-      <h3 class="feature-card-title">フラッシュバック防止</h3>
-      <p class="feature-card-text">
-        振り返り画面ではネガティブな感情表現をデフォルトで隠し、「抽出された課題」のみを表示。見返すたびに嫌な記憶が再燃するのを防ぎます。
-      </p>
-    </div>
+      <!-- 特徴 2 -->
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 class="feature-card-title">フラッシュバック防止</h3>
+        <p class="feature-card-text">
+          振り返り画面ではネガティブな感情表現をデフォルトで隠し、「抽出された課題」のみを表示。見返すたびに嫌な記憶が再燃するのを防ぎます。
+        </p>
+      </div>
 
-    <!-- 特徴 3 -->
-    <div class="feature-card">
-      <div class="feature-icon">🤔</div>
-      <h3 class="feature-card-title">自分自身との対話空間</h3>
-      <p class="feature-card-text">
-        AIからの助言や評価ではなく、純粋に自分の内面と向き合うプライベートな整理スペースを提供します。
-      </p>
+      <!-- 特徴 3 -->
+      <div class="feature-card">
+        <div class="feature-icon">🤔</div>
+        <h3 class="feature-card-title">自分自身との対話</h3>
+        <p class="feature-card-text">
+          AIからの助言や評価ではなく、純粋に自分の内面と向き合うプライベートな整理スペースを提供します。
+        </p>
+      </div>
     </div>
   </div>
 </div>
