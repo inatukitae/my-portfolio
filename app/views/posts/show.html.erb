@@ -1,2 +1,27 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1>投稿詳細</h1>
+
+<div>
+  <h3>出来事（事実）</h3>
+  <p><%= @post.event %></p>
+</div>
+
+<div>
+  <h3>課題（自分ができること）</h3>
+  <p><%= @post.issue %></p>
+</div>
+
+<!-- 感情のフラッシュバック防止：開かないと見えない仕様 -->
+<details>
+  <summary style="cursor: pointer; color: #666;">当時の感情（クリックで表示）</summary>
+  <div style="margin-top: 8px; padding: 10px; background-color: #f8f9fa;">
+    <p><%= @post.emotion %></p>
+  </div>
+</details>
+
+<hr>
+
+<div>
+  <%= link_to "編集", edit_post_path(@post) %> |
+  <%= link_to "削除", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %> |
+  <%= link_to "一覧に戻る", posts_path %>
+</div>
