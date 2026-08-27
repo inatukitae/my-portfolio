@@ -7,8 +7,8 @@ ja:
         user:
           attributes:
             email:
-              taken: "はすでに使用されています。"
+              taken: "は使用できません。"
   errors:
     messages:
       not_saved: "エラーが発生したため %{resource} は保存されませんでした。"
-      taken: "はすでに使用されています。"
+      taken: "は使用できません。"
