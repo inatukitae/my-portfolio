@@ -42,6 +42,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "capybara"
+  gem "simplecov", require: false
 
   # Debugging & Code Analysis
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

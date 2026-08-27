@@ -1,3 +1,13 @@
+require 'simplecov'
+SimpleCov.start 'rails' do
+  # 不要なファイル（設定ファイルやチャンネル等）を除外したい場合
+  add_filter '/channels/'
+  add_filter '/jobs/'
+  add_filter '/mailers/'
+end
+
+
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
