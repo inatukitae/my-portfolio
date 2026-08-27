@@ -12,7 +12,7 @@
       <%# 感情部分はデフォルト非表示の設計にするため一旦コメントアウトまたは格納構造にします %>
       <small>投稿日時: <%= l post.created_at, format: :short %></small> |
       <%= link_to "詳細", post_path(post) %> |
-      <%= link_to "削除", post_path(post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+      <%= button_to "削除", post_path(post), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn-delete" %>
     </div>
   <% end %>
 <% else %>
