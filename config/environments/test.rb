@@ -52,4 +52,9 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   #config.hosts = [ /.*/ ]
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.raise = true # N+1クエリが検出された場合にテストをエラー（Fail）にする
+  end
 end

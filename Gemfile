@@ -43,6 +43,7 @@ group :development, :test do
   gem "faker"
   gem "capybara"
   gem "simplecov", require: false
+  gem "bullet"
 
   # Debugging & Code Analysis
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
