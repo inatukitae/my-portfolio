@@ -8,7 +8,12 @@ ja:
           attributes:
             email:
               taken: "は使用できません。"
+            password:
+              blank: "を入力してください。"
+              too_short: "は6文字以上で入力してください。"
   errors:
     messages:
       not_saved: "エラーが発生したため %{resource} は保存されませんでした。"
       taken: "は使用できません。"
+      blank: "を入力してください。"
+      too_short: "は6文字以上で入力してください。"
