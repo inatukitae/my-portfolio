@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root "top#index"
 
   resources :posts do
-    resource :reflection, only: [:new, :create, :edit, :update]
+    resource :reflection, only: [ :new, :create, :edit, :update ]
   end
 
   # 深掘り一覧と、ステータス切り替え用のルート
-  resources :reflections, only: [:index] do
+  resources :reflections, only: [ :index ] do
     member do
       patch :toggle_hidden
     end
