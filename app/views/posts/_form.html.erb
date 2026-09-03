@@ -75,9 +75,10 @@
   <% end %>
 </div>
 
-<div class="back-link">
+<div class="back-link" style="margin-top: 20px; text-align: center;">
   <%= link_to "トップに戻る", root_path %> |
-  <%= link_to "一覧へ移動", posts_path %>
+  <%= link_to "一覧へ移動", posts_path %> |
+  <%= link_to "投稿せずに戻る", root_path, style: "color: #e03131;" %>
 </div>
 
 <!-- ドロワー制御用JS -->
