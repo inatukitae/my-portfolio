@@ -1,0 +1,57 @@
+<h1>深掘り・振り返り一覧</h1>
+
+<p>次回どう行動すべきかを振り返るための一覧です。</p>
+
+<!-- 表示の切り替えリンク -->
+<div style="margin-bottom: 20px;">
+  <% if @showing_hidden %>
+    <%= link_to "未完了の項目だけ表示する", reflections_path, class: "btn btn-secondary" %>
+  <% else %>
+    <%= link_to "完了済み（非表示）の項目も表示する", reflections_path(show_hidden: true), class: "btn btn-secondary" %>
+  <% end %>
+</div>
+
+<% if @reflections.present? %>
+  <div style="margin-top: 20px;">
+    <% @reflections.each do |reflection| %>
+      <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #dee2e6; border-radius: 4px; background-color: <%= reflection.hidden ? '#f1f3f5' : '#fff' %>;">
+        <p style="color: #666; font-size: 0.9em;">
+          登録日時: <%= reflection.created_at.strftime("%Y/%m/%d %H:%M") %>
+          <% if reflection.hidden %>
+            <span style="color: #e03131; font-weight: bold; margin-left: 10px;">【完了済み】</span>
+          <% end %>
+        </p>
+        <div style="margin-bottom: 10px;">
+          <strong>課題：</strong>
+          <p><%= reflection.post.issue %></p>
+        </div>
+        <div style="margin-bottom: 10px;">
+          <strong>どうすればよかったか（対策）：</strong>
+          <p><%= reflection.solution %></p>
+        </div>
+        
+        <!-- 元の投稿詳細を見るリンク ＋ 完了のオンオフを切り替えるボタン -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+          <div>
+            <%= link_to "元の投稿詳細を見る", post_path(reflection.post) %>
+          </div>
+          <div>
+            <% if reflection.hidden %>
+              <%= link_to "未完了に戻す", toggle_hidden_reflection_path(reflection, show_hidden: params[:show_hidden]), data: { turbo_method: :patch }, class: "btn btn-secondary", style: "font-size: 0.85em; padding: 6px 12px; text-decoration: none;" %>
+            <% else %>
+              <%= link_to "完了にする", toggle_hidden_reflection_path(reflection, show_hidden: params[:show_hidden]), data: { turbo_method: :patch }, class: "btn btn-primary", style: "font-size: 0.85em; padding: 6px 12px; text-decoration: none;" %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>該当する深掘りはまだ登録されていません。</p>
+<% end %>
+
+<br>
+<div>
+  <%= link_to "トップに戻る", root_path %>
+</div>

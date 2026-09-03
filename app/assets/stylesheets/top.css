@@ -81,6 +81,20 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.btn-accent-custom {
+  background-color: #4c51bf;
+  color: #ffffff;
+  border: 2px solid #4c51bf;
+}
+
+.btn-accent-custom:hover {
+  background-color: #43419d;
+  border-color: #43419d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 81, 191, 0.25);
+}
+
 /* コンセプトボックス */
 .concept-box {
   background-color: #f8fafc;

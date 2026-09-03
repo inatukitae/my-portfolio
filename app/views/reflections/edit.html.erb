@@ -1,0 +1,40 @@
+<h1>深掘り・振り返りの編集</h1>
+
+<!-- 元の投稿内容を表示するエリア -->
+<div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px;">
+  <p><strong>出来事：</strong><%= @post.event %></p>
+  <p><strong>課題：</strong><%= @post.issue %></p>
+</div>
+
+<%= form_with(model: [@post, @reflection], url: post_reflection_path(@post), local: true) do |f| %>
+  <% if @reflection.errors.any? %>
+    <div id="error_explanation" style="color: red;">
+      <h2><%= pluralize(@reflection.errors.count, "error") %> prohibited this reflection from being saved:</h2>
+      <ul>
+        <% @reflection.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="margin-bottom: 15px;">
+    <%= f.label :solution, "どうすればよかったか（対策）" %><br>
+    <%= f.text_area :solution, rows: 4, cols: 50 %>
+  </div>
+
+  <!-- 非表示（チェックボックス）の追加 -->
+  <div style="margin-bottom: 15px;">
+    <%= f.check_box :hidden %>
+    <%= f.label :hidden, "この項目を一覧から非表示にする（完了とする）" %>
+  </div>
+
+  <div>
+    <%= f.submit "更新する", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<br>
+<div>
+  <%= link_to "詳細に戻る", post_path(@post) %>
+</div>
