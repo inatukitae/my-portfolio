@@ -5,10 +5,30 @@
   <p><%= @post.event %></p>
 </div>
 
+<br>
+
 <div>
   <h3>課題（自分ができること）</h3>
   <p><%= @post.issue %></p>
 </div>
+
+<br>
+
+<!-- 深掘り・振り返りセクション -->
+<div class="reflection-section">
+  <h3>深掘り・振り返り</h3>
+  <% if @post.reflection.present? %>
+    <p><strong>どうすればよかったか（対策）：</strong><br>
+      <%= @post.reflection.solution %>
+    </p>
+    <p><%= link_to '深掘りを編集する', edit_post_reflection_path(@post), class: 'btn btn-secondary' %></p>
+  <% else %>
+    <p>まだ深掘りが登録されていません。</p>
+    <p><%= link_to '深掘りを追加する', new_post_reflection_path(@post), class: 'btn btn-primary' %></p>
+  <% end %>
+</div>
+
+<br>
 
 <!-- 感情のフラッシュバック防止：開かないと見えない仕様 -->
 <details>
@@ -18,10 +38,12 @@
   </div>
 </details>
 
+<br>
 <hr>
 
 <div>
   <%= link_to "編集", edit_post_path(@post) %> |
   <%= link_to "削除", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %> |
+  <%= link_to "深掘り一覧を見る", reflections_path %> |
   <%= link_to "一覧に戻る", posts_path %>
 </div>
