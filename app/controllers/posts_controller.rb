@@ -19,11 +19,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    authorize @post
+  end
 
-  def edit; end
+  def edit
+    authorize @post
+  end
 
   def update
+    authorize @post
     if @post.update(post_params)
       redirect_to @post, notice: "投稿を更新しました"
     else
@@ -32,6 +37,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
     @post.destroy
     redirect_to posts_path, notice: "投稿を削除しました", status: :see_other
   end
@@ -39,7 +45,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def post_params
