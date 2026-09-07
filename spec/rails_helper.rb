@@ -1,12 +1,10 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
-  # 不要なファイル（設定ファイルやチャンネル等）を除外したい場合
-  add_filter '/channels/'
-  add_filter '/jobs/'
-  add_filter '/mailers/'
+  # 不要なファイル（設定ファイルやチャンネル等）を除外
+  skip "/channels/"
+  skip "/jobs/"
+  skip "/mailers/"
 end
-
-
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
@@ -87,6 +85,9 @@ RSpec.configure do |config|
 
   # Deviseのログインヘルパー（sign_in メソッド）をシステムテストで使えるようにする
   config.include Devise::Test::IntegrationHelpers, type: :system
+
+  # ★追加：リクエストスペック（type: :request）でも sign_in メソッドを使えるようにする
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   # JavaScriptが不要な通常の画面遷移・フォーム送信は rack_test（高速・ブラウザ不要）を使用
   config.before(:each, type: :system) do
