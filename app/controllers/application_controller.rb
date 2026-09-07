@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
+  include Pundit::Authorization
 
   # ログインしていない場合はログイン画面に飛ばす
   # before_action :authenticate_user!
