@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :reflection do
-    association :post 
+    association :post
     solution { "MyText" }
     prevention { "MyText" }
   end
