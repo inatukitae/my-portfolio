@@ -1,4 +1,5 @@
 class ReflectionsController < ApplicationController
+  before_action :authenticate_user!
   # index では set_post を実行しないように except で除外する
   before_action :set_post, except: [ :index, :toggle_hidden ]
   before_action :set_reflection, only: [ :edit, :update ]
