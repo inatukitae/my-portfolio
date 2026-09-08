@@ -58,6 +58,6 @@ Rails.application.configure do
     Bullet.raise = true # N+1クエリが検出された場合にテストをエラー（Fail）にする
   end
 
-# テスト環境ではホスト制限をすべて解除する（または全許可）
+  # テスト環境ではホスト制限をすべて解除する（または全許可）
   config.hosts = [ /.*/ ]
 end
