@@ -11,4 +11,8 @@ class PostPolicy < ApplicationPolicy
   def show?
     record.user == user
   end
+
+  def toggle_hidden?
+    record.user == user
+  end
 end
