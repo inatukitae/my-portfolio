@@ -1,13 +1,31 @@
 class ReflectionPolicy < ApplicationPolicy
-  def update?
-    record.post.user == user
+  class Scope < Scope
+    def resolve
+      scope.joins(:post).where(posts: { user_id: user.id })
+    end
   end
 
-  def destroy?
-    record.post.user == user
+  def index?
+    true
   end
 
   def show?
+    record.post.user == user
+  end
+
+  def new?
+    create?
+  end
+
+  def create?
+    record.post.user == user
+  end
+
+  def edit?
+    update?
+  end
+
+  def update?
     record.post.user == user
   end
 

@@ -1,27 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe PostPolicy, type: :policy do
-  let(:user) { User.new }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
+  let(:post_record) { create(:post, user: user) }
 
-  subject { described_class }
+  describe "#update?" do
+    it "投稿の所有者であればtrueを返すこと" do
+      policy = PostPolicy.new(user, post_record)
+      expect(policy.update?).to be true
+    end
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "投稿の所有者でなければfalseを返すこと" do
+      policy = PostPolicy.new(other_user, post_record)
+      expect(policy.update?).to be false
+    end
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  describe "#destroy?" do
+    it "投稿の所有者であればtrueを返すこと" do
+      policy = PostPolicy.new(user, post_record)
+      expect(policy.destroy?).to be true
+    end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "投稿の所有者でなければfalseを返すこと" do
+      policy = PostPolicy.new(other_user, post_record)
+      expect(policy.destroy?).to be false
+    end
   end
 end
