@@ -3,7 +3,7 @@ class ReflectionsController < ApplicationController
   # index では set_post を実行しないように except で除外する
   before_action :set_post, except: [ :index, :toggle_hidden ]
   before_action :set_reflection, only: [ :edit, :update ]
-  
+
   def index
     if params[:show_hidden] == "true"
       @reflections = Reflection.joins(:post).where(posts: { user_id: current_user.id })
