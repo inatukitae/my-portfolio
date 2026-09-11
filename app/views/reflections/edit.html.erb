@@ -1,41 +1,55 @@
-<h1>深掘り・振り返りの編集</h1>
+<div class="posts-container">
+  <h1 class="page-title">深掘り・振り返りの編集</h1>
 
-<!-- 元の投稿内容を表示するエリア -->
-<div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px;">
-  <p><strong>出来事：</strong><%= @post.event %></p>
-  <p><strong>課題：</strong><%= @post.issue %></p>
-</div>
-
-<%= form_with(model: [@post, @reflection], url: post_reflection_path(@post), local: true) do |f| %>
-  <% if @reflection.errors.any? %>
-    <div id="error_explanation" style="color: red;">
-      <h2><%= pluralize(@reflection.errors.count, "error") %> prohibited this reflection from being saved:</h2>
-      <ul>
-        <% @reflection.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <!-- 出来事・課題の確認カード -->
+  <div class="post-card" style="background-color: #f8fafc; border-color: #e2e8f0; margin-bottom: 20px;">
+    <div class="post-card-section" style="margin-bottom: 12px;">
+      <h3 style="font-size: 0.95rem; color: #4a5568;">📌 出来事</h3>
+      <p class="post-card-text"><%= @post.event %></p>
     </div>
-  <% end %>
-
-  <div style="margin-bottom: 15px;">
-    <%= f.label :solution, "どうすればよかったか（対策）" %><br>
-    <%= f.label :solution, "例：自分でコントロールできたか？など" %><br>
-    <%= f.text_area :solution, rows: 4, cols: 50 %>
+    <div class="post-card-section" style="margin-bottom: 0;">
+      <h3 style="font-size: 0.95rem; color: #4a5568;">🤔 課題</h3>
+      <p class="post-card-text"><%= @post.issue %></p>
+    </div>
   </div>
 
-  <!-- 非表示（チェックボックス）の追加 -->
-  <div style="margin-bottom: 15px;">
-    <%= f.check_box :hidden %>
-    <%= f.label :hidden, "この項目を一覧から非表示にする（完了とする）" %>
+  <!-- 深掘り入力フォームカード -->
+  <div class="post-card">
+    <%= form_with(model: [@post, @reflection], local: true) do |f| %>
+      <%# 7の指摘対応：エラーメッセージの日本語化 %>
+      <% if @reflection.errors.any? %>
+        <div class="error-messages" style="margin-bottom: 20px; padding: 12px 16px; background-color: #fff5f5; border: 1px solid #ffa8a8; border-radius: 8px;">
+          <h2 style="font-size: 1rem; color: #e03131; margin-bottom: 6px;"><%= @reflection.errors.count %>件のエラーが発生しました:</h2>
+          <ul style="margin: 0; padding-left: 20px; color: #c92a2a; font-size: 0.9rem;">
+            <% @reflection.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- 9の指摘対応：labelの重複を解消し、smallで補足説明を配置 -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <%= f.label :solution, "どうすればよかったか（対策）", class: "form-label", style: "font-weight: bold; color: #2d3748; display: block; margin-bottom: 4px;" %>
+        <small style="color: #718096; display: block; margin-bottom: 8px;">例：自分でコントロールできたか？など</small>
+        <%= f.text_area :solution, rows: 6, class: "form-control", style: "width: 100%; box-sizing: border-box;" %>
+      </div>
+
+      <!-- 完了・非表示チェックボックス -->
+      <div class="form-group" style="margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+        <%= f.check_box :hidden, id: "reflection_hidden", style: "width: 18px; height: 18px; cursor: pointer;" %>
+        <%= f.label :hidden, "この項目を完了（一覧から非表示）にする", style: "font-size: 0.95rem; color: #4a5568; cursor: pointer;" %>
+      </div>
+
+      <div class="form-actions" style="text-align: center;">
+        <%= f.submit "更新する", class: "btn-submit", style: "width: 100%; max-width: 320px;" %>
+      </div>
+    <% end %>
   </div>
 
-  <div>
-    <%= f.submit "更新する", class: "btn btn-primary" %>
+  <!-- 下部ナビゲーション -->
+  <div class="back-link">
+    <%= link_to "詳細に戻る", post_path(@post) %> |
+    <%= link_to "深掘り一覧に戻る", reflections_path %>
   </div>
-<% end %>
-
-<br>
-<div>
-  <%= link_to "詳細に戻る", post_path(@post) %>
 </div>

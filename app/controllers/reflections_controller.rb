@@ -1,6 +1,6 @@
 class ReflectionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [ :new, :create ]
+  before_action :set_post, only: [ :new, :create, :edit, :update ]
   before_action :set_reflection, only: [ :edit, :update, :toggle_hidden ]
 
   def index
@@ -36,7 +36,7 @@ class ReflectionsController < ApplicationController
   def update
     authorize @reflection
     if @reflection.update(reflection_params)
-      redirect_to post_path(@reflection.post), notice: "深掘りを更新しました。"
+      redirect_to post_path(@post), notice: "深掘りを更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -56,7 +56,11 @@ class ReflectionsController < ApplicationController
   end
 
   def set_reflection
-    @reflection = Reflection.find(params[:id])
+    if params[:id].present?
+      @reflection = Reflection.find(params[:id])
+    elsif @post.present?
+      @reflection = @post.reflection
+    end
   end
 
   def reflection_params
