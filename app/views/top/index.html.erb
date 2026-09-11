@@ -10,9 +10,16 @@
       冷静に客観視し、自分の学びと解決へ繋げましょう！
     </p>
     <div class="hero-actions">
-      <%= link_to "思考整理をはじめる", new_post_path, class: "btn-custom btn-primary-custom" %>
-      <%= link_to "深掘り一覧を見る", reflections_path, class: "btn-custom btn-accent-custom" %>
-      <%= link_to "過去の投稿を見る", posts_path, class: "btn-custom btn-secondary-custom" %>
+      <% if user_signed_in? %>
+        <%# --- ログイン済みユーザー向け --- %>
+        <%= link_to "思考整理をはじめる", new_post_path, class: "btn-custom btn-primary-custom" %>
+        <%= link_to "深掘り一覧を見る", reflections_path, class: "btn-custom btn-accent-custom" %>
+        <%= link_to "過去の投稿を見る", posts_path, class: "btn-custom btn-secondary-custom" %>
+      <% else %>
+        <%# --- 未ログインユーザー向け（登録とログインに絞る） --- %>
+        <%= link_to "新規登録してはじめる", new_user_registration_path, class: "btn-custom btn-primary-custom" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn-custom btn-secondary-custom" %>
+      <% end %>
     </div>
   </div>
 </div>
