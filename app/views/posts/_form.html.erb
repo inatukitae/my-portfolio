@@ -75,10 +75,14 @@
   <% end %>
 </div>
 
-<div class="back-link" style="margin-top: 20px; text-align: center;">
-  <%= link_to "トップに戻る", root_path %> |
-  <%= link_to "一覧へ移動", posts_path %> |
-  <%= link_to "投稿せずに戻る", root_path, style: "color: #e03131;" %>
+<div class="back-link" style="margin-top: 24px; text-align: center;">
+  <% if @post.persisted? %>
+    <%= link_to "詳細に戻る", post_path(@post), class: "btn-sm btn-outline-secondary" %>
+    <%= link_to "一覧に戻る", posts_path, class: "btn-sm btn-outline-secondary", style: "margin-left: 8px;" %>
+  <% else %>
+    <%= link_to "投稿せずに戻る", root_path, class: "btn-sm btn-outline-secondary" %>
+    <%= link_to "一覧へ移動", posts_path, class: "btn-sm btn-outline-secondary", style: "margin-left: 8px;" %>
+  <% end %>
 </div>
 
 <!-- ドロワー制御用JS -->
