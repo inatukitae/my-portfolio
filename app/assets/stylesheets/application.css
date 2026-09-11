@@ -333,3 +333,103 @@
     max-width: 440px; /* 画面全体を覆わず、横から適度に出てくる幅にする */
   }
 }
+
+/* ===================================================
+   一覧・詳細画面の統一デザイン (カード＆ボタン)
+   =================================================== */
+.posts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.post-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.post-card-section {
+  margin-bottom: 16px;
+}
+
+.post-card-section h3, .post-card-section h2 {
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.post-card-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #2d3748;
+  white-space: pre-wrap;
+}
+
+.post-meta {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #edf2f7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* 操作ボタングループ */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.btn-outline-primary {
+  color: #2b6cb0;
+  border-color: #bee3f8;
+  background-color: #ebf8ff;
+}
+.btn-outline-primary:hover {
+  background-color: #2b6cb0;
+  color: #fff;
+}
+
+.btn-outline-secondary {
+  color: #4a5568;
+  border-color: #e2e8f0;
+  background-color: #f7fafc;
+}
+.btn-outline-secondary:hover {
+  background-color: #edf2f7;
+}
+
+/* 危険な操作（削除） */
+.btn-outline-danger {
+  color: #e53e3e;
+  border-color: #fed7d7;
+  background-color: #fff5f5;
+}
+.btn-outline-danger:hover {
+  background-color: #e53e3e;
+  color: #fff;
+}

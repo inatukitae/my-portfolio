@@ -1,57 +1,70 @@
-<h1>深掘り・振り返り一覧</h1>
+<div class="posts-container">
+  <div class="posts-header" style="margin-bottom: 20px;">
+    <h1 class="page-title" style="margin-bottom: 8px;">深掘り・振り返り一覧</h1>
+    <p style="color: #718096; font-size: 0.95rem; margin-bottom: 16px;">
+      次回どう行動すべきかを振り返るための一覧です。
+    </p>
 
-<p>次回どう行動すべきかを振り返るための一覧です。</p>
+    <!-- 表示の切り替え（タブ・ピル風ボタン） -->
+    <div>
+      <% if @showing_hidden %>
+        <%= link_to "未完了のみ表示", reflections_path, class: "btn-sm btn-outline-primary" %>
+        <span style="font-size: 0.85rem; color: #718096; margin-left: 8px;">※現在「完了済み」も含めて表示中</span>
+      <% else %>
+        <%= link_to "完了済みも表示する", reflections_path(show_hidden: true), class: "btn-sm btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
 
-<!-- 表示の切り替えリンク -->
-<div style="margin-bottom: 20px;">
-  <% if @showing_hidden %>
-    <%= link_to "未完了の項目だけ表示する", reflections_path, class: "btn btn-secondary" %>
-  <% else %>
-    <%= link_to "完了済み（非表示）の項目も表示する", reflections_path(show_hidden: true), class: "btn btn-secondary" %>
-  <% end %>
-</div>
-
-<% if @reflections.present? %>
-  <div style="margin-top: 20px;">
+  <% if @reflections.present? %>
     <% @reflections.each do |reflection| %>
-      <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #dee2e6; border-radius: 4px; background-color: <%= reflection.hidden ? '#f1f3f5' : '#fff' %>;">
-        <p style="color: #666; font-size: 0.9em;">
-          登録日時: <%= reflection.created_at.strftime("%Y/%m/%d %H:%M") %>
+      <div class="post-card" style="<%= 'background-color: #f8fafc; border-color: #cbd5e1; opacity: 0.88;' if reflection.hidden %>">
+        
+        <!-- ヘッダーメタ情報（登録日時 & 完了バッジ） -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <span style="font-size: 0.85rem; color: #718096;">
+            登録日時: <%= l reflection.created_at, format: :short %>
+          </span>
           <% if reflection.hidden %>
-            <span style="color: #e03131; font-weight: bold; margin-left: 10px;">【完了済み】</span>
+            <span style="background-color: #e6fcf5; color: #0ca678; border: 1px solid #96f2d7; font-size: 0.75rem; font-weight: bold; padding: 2px 8px; border-radius: 12px;">
+              ✓ 完了済み
+            </span>
           <% end %>
-        </p>
-        <div style="margin-bottom: 10px;">
-          <strong>課題：</strong>
-          <p><%= reflection.post.issue %></p>
         </div>
-        <div style="margin-bottom: 10px;">
-          <strong>どうすればよかったか（対策）：</strong>
-          <p><%= reflection.solution %></p>
+
+        <div class="post-card-section">
+          <h3>🤔 課題</h3>
+          <p class="post-card-text"><%= reflection.post.issue %></p>
+        </div>
+
+        <div class="post-card-section">
+          <h3 style="color: #2b6cb0;">🌱 どうすればよかったか（対策）</h3>
+          <p class="post-card-text"><%= reflection.solution %></p>
         </div>
         
-        <!-- 元の投稿詳細を見るリンク ＋ 完了のオンオフを切り替えるボタン -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+        <!-- 操作部 -->
+        <div class="post-meta" style="margin-top: 16px;">
           <div>
-            <%= link_to "元の投稿詳細を見る", post_path(reflection.post) %>
+            <%= link_to "元の投稿詳細を見る", post_path(reflection.post), class: "btn-sm btn-outline-secondary" %>
           </div>
           <div>
             <% if reflection.hidden %>
-              <%= link_to "未完了に戻す", toggle_hidden_reflection_path(reflection, show_hidden: params[:show_hidden]), data: { turbo_method: :patch }, class: "btn btn-secondary", style: "font-size: 0.85em; padding: 6px 12px; text-decoration: none;" %>
+              <%= link_to "未完了に戻す", toggle_hidden_reflection_path(reflection, show_hidden: params[:show_hidden]), data: { turbo_method: :patch }, class: "btn-sm btn-outline-secondary" %>
             <% else %>
-              <%= link_to "完了にする", toggle_hidden_reflection_path(reflection, show_hidden: params[:show_hidden]), data: { turbo_method: :patch }, class: "btn btn-primary", style: "font-size: 0.85em; padding: 6px 12px; text-decoration: none;" %>
+              <%= link_to "完了にして非表示", toggle_hidden_reflection_path(reflection, show_hidden: params[:show_hidden]), data: { turbo_method: :patch }, class: "btn-sm btn-outline-primary" %>
             <% end %>
           </div>
         </div>
 
       </div>
     <% end %>
-  </div>
-<% else %>
-  <p>該当する深掘りはまだ登録されていません。</p>
-<% end %>
+  <% else %>
+    <div class="post-card" style="text-align: center; color: #718096; padding: 40px 20px;">
+      <p>該当する深掘りはまだ登録されていません。</p>
+    </div>
+  <% end %>
 
-<br>
-<div>
-  <%= link_to "トップに戻る", root_path %>
+  <div class="back-link">
+    <%= link_to "トップに戻る", root_path %>
+  </div>
 </div>
