@@ -64,6 +64,6 @@ class ReflectionsController < ApplicationController
   end
 
   def reflection_params
-    params.require(:reflection).permit(:solution, :prevention, :hidden)
+    params.require(:reflection).permit(:solution, :hidden)
   end
 end
