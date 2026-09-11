@@ -23,26 +23,41 @@
   </head>
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RF4XSF08K3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RF4XSF08K3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-RF4XSF08K3');
-</script>
+    gtag('config', 'G-RF4XSF08K3');
+  </script>
 
   <body>
     <!-- Deviseの画面（ログイン・登録等）ではない時だけ表示 -->
     <% unless devise_controller? %>
-      <header>
-        <% if user_signed_in? %>
-          <span>ようこそ、<%= current_user.name %> さん</span>
-          <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-logout" %>
-        <% else %>
-          <%= link_to "新規登録", new_user_registration_path %>
-          <%= link_to "ログイン", new_user_session_path %>
-        <% end %>
+      <header class="app-header">
+        <div class="header-inner">
+          <div class="header-left">
+            <%= link_to "思考整理アプリ", root_path, class: "header-logo" %>
+            <% if user_signed_in? %>
+              <nav class="header-nav">
+                <%= link_to "思考整理", new_post_path, class: "header-nav-link" %>
+                <%= link_to "投稿一覧", posts_path, class: "header-nav-link" %>
+                <%= link_to "深掘り一覧", reflections_path, class: "header-nav-link" %>
+              </nav>
+            <% end %>
+          </div>
+
+          <div class="header-right">
+            <% if user_signed_in? %>
+              <span class="user-greeting">ようこそ、<strong><%= current_user.name %></strong> さん</span>
+              <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-logout" %>
+            <% else %>
+              <%= link_to "新規登録", new_user_registration_path, class: "btn-sm btn-outline-primary" %>
+              <%= link_to "ログイン", new_user_session_path, class: "btn-sm btn-outline-secondary" %>
+            <% end %>
+          </div>
+        </div>
       </header>
     <% end %>
 
