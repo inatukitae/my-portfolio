@@ -3,3 +3,16 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M"
       short: "%Y/%m/%d %H:%M"
+
+  activerecord:
+    models:
+      post: "思考整理ノート"
+      reflection: "深掘り"
+    attributes:
+      post:
+        event: "出来事"
+        emotion: "感情"
+        issue: "課題"
+      reflection:
+        solution: "対策"
+        prevention: "再発防止策"
