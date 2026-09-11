@@ -1,49 +1,61 @@
-<h1>投稿詳細</h1>
+<div class="posts-container">
+  <h1 class="page-title">投稿詳細</h1>
 
-<div>
-  <h3>出来事（事実）</h3>
-  <p><%= @post.event %></p>
-</div>
+  <div class="post-card">
+    <!-- 出来事セクション -->
+    <div class="post-card-section">
+      <h3>📌 出来事（事実）</h3>
+      <p class="post-card-text"><%= @post.event %></p>
+    </div>
 
-<br>
+    <!-- 課題セクション -->
+    <div class="post-card-section">
+      <h3>🤔 課題（自分ができること）</h3>
+      <p class="post-card-text"><%= @post.issue %></p>
+    </div>
 
-<div>
-  <h3>課題（自分ができること）</h3>
-  <p><%= @post.issue %></p>
-</div>
+    <!-- 深掘り・振り返りセクション -->
+    <div class="post-card-section" style="background-color: #f7fafc; padding: 16px; border-radius: 8px; border: 1px solid #edf2f7; margin-top: 20px;">
+      <h3 style="color: #2b6cb0;">🌱 深掘り・振り返り</h3>
+      <% if @post.reflection.present? %>
+        <p style="margin: 8px 0 4px; font-weight: 600; color: #4a5568; font-size: 0.85rem;">どうすればよかったか（対策）：</p>
+        <p class="post-card-text"><%= @post.reflection.solution %></p>
+        <div style="margin-top: 12px;">
+          <%= link_to '深掘りを編集する', edit_post_reflection_path(@post), class: 'btn-sm btn-outline-secondary' %>
+        </div>
+      <% else %>
+        <p style="color: #718096; font-size: 0.9rem; margin: 8px 0;">まだ深掘りが登録されていません。</p>
+        <div style="margin-top: 12px;">
+          <%= link_to '深掘りを追加する', new_post_reflection_path(@post), class: 'btn-sm btn-outline-primary' %>
+        </div>
+      <% end %>
+    </div>
 
-<br>
+    <!-- 感情のフラッシュバック防止：開かないと見えない仕様 -->
+    <div class="post-card-section" style="margin-top: 20px;">
+      <details style="background-color: #fffaf0; border: 1px dashed #fbd38d; border-radius: 8px; padding: 12px;">
+        <summary style="cursor: pointer; color: #c05621; font-weight: 600; font-size: 0.9rem;">
+          🫗 当時の感情（クリックで表示）
+        </summary>
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #fbd38d;">
+          <p class="post-card-text" style="color: #744210;"><%= @post.emotion %></p>
+        </div>
+      </details>
+    </div>
 
-<!-- 深掘り・振り返りセクション -->
-<div class="reflection-section">
-  <h3>深掘り・振り返り</h3>
-  <% if @post.reflection.present? %>
-    <p><strong>どうすればよかったか（対策）：</strong><br>
-      <%= @post.reflection.solution %>
-    </p>
-    <p><%= link_to '深掘りを編集する', edit_post_reflection_path(@post), class: 'btn btn-secondary' %></p>
-  <% else %>
-    <p>まだ深掘りが登録されていません。</p>
-    <p><%= link_to '深掘りを追加する', new_post_reflection_path(@post), class: 'btn btn-primary' %></p>
-  <% end %>
-</div>
-
-<br>
-
-<!-- 感情のフラッシュバック防止：開かないと見えない仕様 -->
-<details>
-  <summary style="cursor: pointer; color: #666;">当時の感情（クリックで表示）</summary>
-  <div style="margin-top: 8px; padding: 10px; background-color: #f8f9fa;">
-    <p><%= @post.emotion %></p>
+    <!-- 操作ボタングループ（5の指摘対応） -->
+    <div class="post-meta" style="margin-top: 24px;">
+      <div class="action-buttons">
+        <%= link_to "編集", edit_post_path(@post), class: "btn-sm btn-outline-primary" %>
+        <%= link_to "深掘り一覧を見る", reflections_path, class: "btn-sm btn-outline-secondary" %>
+        <%= button_to "削除", post_path(@post), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn-sm btn-outline-danger" %>
+      </div>
+    </div>
   </div>
-</details>
 
-<br>
-<hr>
-
-<div>
-  <%= link_to "編集", edit_post_path(@post) %> |
-  <%= link_to "削除", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %> |
-  <%= link_to "深掘り一覧を見る", reflections_path %> |
-  <%= link_to "一覧に戻る", posts_path %>
+  <!-- ナビゲーションリンク（操作ボタンと分離） -->
+  <div class="back-link">
+    <%= link_to "一覧に戻る", posts_path %> |
+    <%= link_to "トップに戻る", root_path %>
+  </div>
 </div>
