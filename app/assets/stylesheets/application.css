@@ -296,3 +296,40 @@
   text-align: center;
   margin-top: 24px;
 }
+
+/* ===================================================
+   エラー表示・必須感の強調スタイル（追加分）
+   =================================================== */
+
+/* Railsが自動付与する field_with_errors でレイアウトを崩さない設定 */
+.field_with_errors {
+  display: contents;
+}
+
+/* 入力エラーがある入力欄の枠線を赤く強調 */
+.field_with_errors textarea,
+.field_with_errors input {
+  border: 2px solid #e03131 !important;
+  background-color: #fff5f5 !important;
+}
+
+/* 「未入力」バッジを赤系統にして「要入力」であることをアピール */
+.btn-drawer .badge:not(.filled) {
+  background-color: #ffe3e3;
+  color: #c92a2a;
+  border: 1px solid #ffa8a8;
+  font-weight: bold;
+}
+
+/* 「入力あり」バッジは視認性の良い緑色を維持 */
+.btn-drawer .badge.filled {
+  background-color: #2b8a3e;
+  color: #ffffff;
+}
+
+/* 【10の指摘対応】PC表示時（画面幅768px以上）のドロワー幅を適切なサイズに調整 */
+@media (min-width: 768px) {
+  .drawer {
+    max-width: 440px; /* 画面全体を覆わず、横から適度に出てくる幅にする */
+  }
+}
