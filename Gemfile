@@ -38,6 +38,9 @@ gem "kamal", require: false
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
+gem "sentry-ruby"
+gem "sentry-rails"
+
 group :development, :test do
   # Testing
   gem "rspec-rails"
