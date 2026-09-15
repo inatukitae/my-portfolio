@@ -31,6 +31,19 @@ RSpec.describe '投稿機能', type: :system do
       visit new_post_path
 
       fill_in 'post[event]', with: ''
+      fill_in 'post[emotion]', with: '新しい感情'
+      fill_in 'post[issue]', with: '新しい課題'
+      click_button '整理完了して投稿する'
+
+      expect(page).to have_content '件のエラーが発生しました'
+    end
+
+    it '感情や課題が空の場合は新規登録ができないこと' do
+      visit new_post_path
+
+      fill_in 'post[event]', with: '新しい出来事'
+      fill_in 'post[emotion]', with: ''
+      fill_in 'post[issue]', with: ''
       click_button '整理完了して投稿する'
 
       expect(page).to have_content '件のエラーが発生しました'
@@ -47,7 +60,7 @@ RSpec.describe '投稿機能', type: :system do
   end
 
   describe '編集・更新' do
-    it '投稿を更新できること' do
+    it '正しい入力で投稿を更新できること' do
       visit edit_post_path(post)
 
       fill_in 'post[event]', with: '更新された出来事'
@@ -55,12 +68,20 @@ RSpec.describe '投稿機能', type: :system do
 
       expect(page).to have_content '更新された出来事'
     end
+
+    it '出来事を空にして更新しようとした場合は更新に失敗すること' do
+      visit edit_post_path(post)
+
+      fill_in 'post[event]', with: ''
+      click_button '更新する'
+
+      expect(page).to have_content '件のエラーが発生しました'
+    end
   end
 
   describe '削除' do
     it '投稿を削除できること' do
       visit posts_path
-      # button_to の場合は click_button, link_to の場合は click_link
       click_on '削除'
 
       expect(page).not_to have_content '既存の出来事'
